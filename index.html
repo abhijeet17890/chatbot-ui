@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+    <body>
+        
+        <div class="form container wrapper">
+        <form class="form-horizontal"  onsubmit="return false;" id="user-form" >
+            <div class="form-group">
+            <label for="exampleInputName">Name</label>
+            <input type="name" class="form-control" id="exampleInputName" placeholder="Enter Name">
+            </div>
+            <div class="form-group" >
+            <label for="exampleInputEmail">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-check">
+            <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+            </div>
+            <button type="submit" id="user-submit"class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+    
+        <div class="frame">
+          <div class="panel panel-primary" style="z-index: 1000">
+          <div id="chat-panel" class="panel-heading"><b>Chat with us</b></div></div>
+          <div class="innerframe">
+            <ul id="messages"></ul>
+            <div id="message-box">
+                <div class="msj-rta macro" style="margin:auto">                        
+                    <div class="text text-l" style="background:white">
+                        <input class="mytext" placeholder="Type a message"/>
+                    </div> 
+                </div>
+            </div>
+            </div>
+
+        </div>  
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>      
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="index.js"></script>
+</html>
