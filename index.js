@@ -3,8 +3,15 @@ $(document).ready(function() {
 // var apiai = require('apiai');
 // var app = apiai("ca0ab94c7104450ea34585ee8a7a00b8");
 
+//"http://18.219.111.242:1337"   directly to server
+//"http://localhost:9000/api-server"  proxy pass to aws server
+//"http://localhost:9000/api-local"   proxy pass to local server
+
+//"http://localhost:9000/api/"   proxy pass to local server IN AWS
+
+
 var accessToken = "ca0ab94c7104450ea34585ee8a7a00b8";
-var serverbaseUrl = "http://18.219.111.242:1337"//i "http://localhost:8000/api-server"
+var serverbaseUrl = "http://localhost:9000/api-local/";
 var dialogbaseUrl = "https://api.api.ai/v1/";
 
 
@@ -17,7 +24,7 @@ var remote = {};
 remote.avatar = "https://developers.viber.com/images/apps/apiai-icon.png";
 
 
-var sendPOSTRequest = function(url, method, payload, successCallBack){
+var sendAJAXRequest = function(url, method, payload, successCallBack){
         var obj = {
         	type: method,
             url: serverbaseUrl + url,
@@ -50,7 +57,7 @@ $("#user-form").submit(function(e) {
                 "email":$("#exampleInputEmail").val(),
                 };
 
-        sendPOSTRequest('/getcourse',"GET", null,  function(data, status){
+        sendAJAXRequest('getcourse',"GET", null,  function(data, status){
                 if(data && data.success){
                     if(data.message){
                         console.log("success");
