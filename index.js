@@ -1,17 +1,21 @@
 
 $(document).ready(function() {
+
+
+    
+//$(".frame").hide();
 // var apiai = require('apiai');
 // var app = apiai("ca0ab94c7104450ea34585ee8a7a00b8");
 
-//"http://18.219.111.242:1337"   directly to server
-//"http://localhost:9000/api-server"  proxy pass to aws server
-//"http://localhost:9000/api-local"   proxy pass to local server
+//"http://18.219.111.242:1337/"   directly to server
+//"http://localhost:9000/api-server/"  proxy pass to aws server
+//"http://localhost:9000/api-local/"   proxy pass to local server
 
 //"http://localhost:9000/api/"   proxy pass to local server IN AWS
 
 
 var accessToken = "ca0ab94c7104450ea34585ee8a7a00b8";
-var serverbaseUrl = "http://localhost:9000/api-local/";
+var serverbaseUrl = "http://localhost:9000/api-server/";
 var dialogbaseUrl = "https://api.api.ai/v1/";
 
 
@@ -32,6 +36,10 @@ var sendAJAXRequest = function(url, method, payload, successCallBack){
             contentType: 'application/json',
             success: function( data, status, xhr) {
                 console.log(data, status);
+                //$("#userform").hide();
+                 //$(".frame").show();
+                hold = "Hi "+ data.data;
+                insertChat("remote", hold);
                 return successCallBack(data, status);
             },
             error: function(xhr, status, error){
@@ -57,12 +65,15 @@ $("#user-form").submit(function(e) {
                 "email":$("#exampleInputEmail").val(),
                 };
 
-        sendAJAXRequest('getcourse',"GET", null,  function(data, status){
+        sendAJAXRequest('createUser',"POST", payload,  function(data, status){
+
+                console.log(data);
                 if(data && data.success){
                     if(data.message){
                         console.log("success");
                         }
-                    showStatusForm();
+                        
+                    //showStatusForm();
                     
                 }else if(data && !data.success){
                     if(data.message){
@@ -105,7 +116,7 @@ function insertChat(who, text){
     }else{
         control = '<li style="width:100%">' +
                         '<div class="msj macro">' +
-                        '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+local.avatar+'" /></div>' +
+                        //'<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+local.avatar+'" /></div>' +
                         //'<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ remote.avatar +'" /></div>' +
                             '<div class="text text-l">' +
                                 '<p>'+ text +'</p>' +
@@ -140,6 +151,12 @@ $(".mytext").on("keyup", function(e){
 
 resetChat();
 
+function replaceURLWithHTMLLinks(text)
+{
+    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;()]*[-A-Z0-9+&@#\/%=~_|()])/ig;
+    return text.replace(exp,"<a href='$1'>$1</a>")
+}
+
 function queryBot(text) {
             $.ajax({
                 type: "POST",
@@ -151,7 +168,11 @@ function queryBot(text) {
                 },
                 data: JSON.stringify({ query: text, lang: "en", sessionId: "597468526481284741854158548745" }),
                 success: function(data) {
-                    insertChat("remote",data.result.fulfillment.speech);
+                    var text1 = data.result.fulfillment.speech;
+
+                    text1 = replaceURLWithHTMLLinks(text1);                    
+                    
+                    insertChat("remote",text1);
                 },
                 error: function() {
                     insertChat("remote","Internal Server Error");

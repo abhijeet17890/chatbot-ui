@@ -37,7 +37,7 @@
     width:100%;text-align:right;color:silver;margin-bottom:-7px;margin-top:auto;
 }
 .text-l{
-    float:left;padding-right:10px;
+    float:left;padding-right:10px;overflow: -webkit-paged-x;
 }        
 .text-r{
     float:right;padding-left:10px;
@@ -66,7 +66,7 @@
     position:fixed;
     right:10px;
     bottom:0px;
-    width:325px;
+    width:350px;
 }
 .panel-heading{
     cursor: pointer;
